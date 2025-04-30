@@ -22,7 +22,7 @@ export default function About() {
             marginBottom: "-20px",
           }}
         >
-          About Me
+          About
         </Typography>
 
         <Box
