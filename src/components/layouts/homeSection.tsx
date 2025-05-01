@@ -28,7 +28,14 @@ const imageVariant = {
 
 export default function Home() {
   return (
-    <Box sx={{ marginTop: "80px", paddingX: "100px" }}>
+    <Box
+      sx={{
+        paddingX: "80px",
+        height: "100vh",
+        overflow: "hidden",
+        marginTop: "80px",
+      }}
+    >
       {/* Flex container for text and image */}
       <Box
         sx={{
@@ -51,7 +58,7 @@ export default function Home() {
                 sx={{
                   fontStyle: "Geist",
                   color: index === 2 ? "#7AB2B2" : "#4D869C",
-                  fontSize: index === 2 ? "50px" : "85px",
+                  fontSize: index === 2 ? "40px" : "65px",
                   fontWeight: index === 2 ? "400" : "600",
                 }}
               >
@@ -59,29 +66,6 @@ export default function Home() {
               </Typography>
             </motion.div>
           ))}
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                marginTop: "20px",
-                width: "200px",
-                height: "50px",
-                fontSize: "20px",
-                color: "#EEF7FF",
-                bgcolor: "#7AB2B2",
-                "&:hover": {
-                  backgroundColor: "#4D869C",
-                },
-              }}
-            >
-              Let's Connect
-            </Button>
-          </motion.div>
         </Box>
 
         {/* Right: Image */}
@@ -92,7 +76,7 @@ export default function Home() {
               alt="My Image"
               style={{
                 width: "100%",
-                maxWidth: "560px",
+                maxWidth: "500px",
               }}
             />
           </Box>
@@ -112,7 +96,7 @@ export default function Home() {
             height: "2px",
             backgroundColor: "#4D869C",
             borderRadius: "2px",
-            marginTop: "140px",
+            marginTop: "80px",
           }}
         />
       </motion.div>

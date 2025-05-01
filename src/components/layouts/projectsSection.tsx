@@ -1,88 +1,170 @@
-"use client";
-
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Modal, IconButton } from "@mui/material";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import * as React from "react";
-import { motion } from "framer-motion";
-
-// Smooth, slow zoom fade animation
-const fadeZoom = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 5,
-      ease: [0.30, 1, 0.30, 1], // custom ease for smoothness
-    },
-  },
-};
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Projects() {
+  const [open, setOpen] = React.useState(false);
+  const [selectedImage, setSelectedImage] = React.useState("");
+  const [pageIndex, setPageIndex] = React.useState(0);
+
+  const handleOpen = (imageSrc) => {
+    setSelectedImage(imageSrc);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const pages = [
+    [
+      "/assets/loginpage1.jpg",
+      "/assets/loginpage2.jpg",
+      "/assets/loginpage3.jpg",
+      "/assets/loginpage3.jpg",
+    ],
+    [
+      "/assets/business1.jpg",
+      "/assets/business2.jpg",
+      "/assets/business3.jpg",
+      
+    ],
+  ];
+
   return (
-    <Box sx={{ marginTop: "80px", paddingX: "100px", marginBottom: "80px" }}>
-      {/* Animated Title */}
-      <motion.div initial="hidden" animate="visible" variants={fadeZoom}>
-        <Box
-          sx={{
-            width: "100%",
-            fontFamily: "Geist",
-            textAlign: "center",
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: "Geist",
-              color: "#4D869C",
-              fontSize: "65px",
-              fontWeight: "600",
-              marginBottom: "10px",
-            }}
-          >
-            Projects
-          </Typography>
-        </Box>
-      </motion.div>
-
-      {/* Animated Content */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeZoom}
-        style={{ marginTop: "60px" }}
+    <Box
+      sx={{
+        marginTop: "10px",
+        paddingX: "80px",
+        height: "100vh",
+        position: "relative", // for absolute arrows
+        overflow: "hidden",
+      }}
+    >
+      <Typography
+        sx={{
+          fontFamily: "Geist",
+          color: "#4D869C",
+          fontSize: "65px",
+          fontWeight: "600",
+          textAlign: "center",
+          marginBottom: "30px",
+        }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Typography
+        {pageIndex === 0 ? "Login Page" : "Business Page"}
+      </Typography>
+
+      {/* Slider Section */}
+      <Box sx={{ position: "relative" }}>
+        {/* Left Arrow */}
+        {pageIndex > 0 && (
+          <IconButton
+            onClick={() => setPageIndex((prev) => prev - 1)}
             sx={{
-              fontFamily: "Geist",
-              color: "#7AB2B2",
-              fontSize: "55px",
-              fontWeight: "500",
+              position: "absolute",
+              top: "50%",
+              left: 0,
+              transform: "translateY(-50%)",
+              zIndex: 10,
+              backgroundColor: "white",
+              boxShadow: 2,
             }}
           >
-            Business
-          </Typography>
+            <ArrowBackIos />
+          </IconButton>
+        )}
 
+        {/* Right Arrow */}
+        {pageIndex < pages.length - 1 && (
+          <IconButton
+            onClick={() => setPageIndex((prev) => prev + 1)}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              right: 0,
+              transform: "translateY(-50%)",
+              zIndex: 10,
+              backgroundColor: "white",
+              boxShadow: 2,
+            }}
+          >
+            <ArrowForwardIos />
+          </IconButton>
+        )}
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pageIndex}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Box
+              sx={{ marginLeft: "80px", display: "flex", flexDirection: "column", alignItems: "center" }}
+            >
+              {/* First row */}
+              <Box sx={{ display: "flex", gap: "40px", marginBottom: "40px" }}>
+                {pages[pageIndex].slice(0, 2).map((src, idx) => (
+                  <img
+                    key={idx}
+                    src={src}
+                    alt={`Page ${pageIndex} Image ${idx + 1}`}
+                    style={{
+                      width: "40%",
+                      height: "auto",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleOpen(src)}
+                  />
+                ))}
+              </Box>
+
+              {/* Second row */}
+              <Box sx={{ display: "flex", gap: "40px" }}>
+                {pages[pageIndex].slice(2, 4).map((src, idx) => (
+                  <img
+                    key={idx}
+                    src={src}
+                    alt={`Page ${pageIndex} Image ${idx + 3}`}
+                    style={{
+                      width: "40%",
+                      height: "auto",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleOpen(src)}
+                  />
+                ))}
+              </Box>
+            </Box>
+          </motion.div>
+        </AnimatePresence>
+      </Box>
+
+      {/* Image Modal */}
+      <Modal open={open} onClose={handleClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
           <img
-            src="/assets/loginPage.png"
-            alt="DeveloperPage"
+            src={selectedImage}
+            alt="Enlarged"
             style={{
-              width: "800px",
-              height: "600px",
-              marginLeft: "20px",
-              borderRadius: "12px",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-              transition: "transform 0.3s ease-in-out",
+              width: "100%",
+              height: "auto",
             }}
           />
         </Box>
-      </motion.div>
+      </Modal>
     </Box>
   );
 }
