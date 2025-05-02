@@ -52,7 +52,7 @@ export default function Projects() {
           marginBottom: "30px",
         }}
       >
-        {pageIndex === 0 ? "Login Page" : "Business Page"}
+        {pageIndex === 0 ? "Sign Up Pages" : "Business Page"}
       </Typography>
 
       {/* Slider Section */}
@@ -67,8 +67,13 @@ export default function Projects() {
               left: 0,
               transform: "translateY(-50%)",
               zIndex: 10,
-              backgroundColor: "white",
+              backgroundColor: "#CDE8E5",
+              color: "#4D869C",
               boxShadow: 2,
+              "&:hover": {
+                backgroundColor: "#4D869C",
+                color: "#CDE8E5",
+              },
             }}
           >
             <ArrowBackIos />
@@ -85,8 +90,13 @@ export default function Projects() {
               right: 0,
               transform: "translateY(-50%)",
               zIndex: 10,
-              backgroundColor: "white",
+              backgroundColor: "#CDE8E5",
+              color: "#4D869C",
               boxShadow: 2,
+              "&:hover": {
+                backgroundColor: "#4D869C",
+                color: "#CDE8E5",
+              },
             }}
           >
             <ArrowForwardIos />

@@ -425,17 +425,46 @@ export default function About() {
           alignItems: "center",
           width: "800px",
           position: "absolute",
-          left: "50%", // horizontal center
-          transform: "translateX(-50%)", // perfectly centers it horizontally
+          left: "50%",
+          transform: "translateX(-50%)",
         }}
       >
-        <Button variant="outlined" onClick={handleBack} disabled={index === 0}>
+        <Button
+          variant="outlined"
+          onClick={handleBack}
+          disabled={index === 0}
+          sx={{
+            color: "#4D869C",
+            borderColor: "#4D869C",
+            "&:hover": {
+              backgroundColor: "#4D869C",
+              color: "#EEF7FF",
+            },
+            "&.Mui-focusVisible, &:focus": {
+              backgroundColor: "#4D869C",
+              color: "#EEF7FF",
+            },
+          }}
+        >
           Preview
         </Button>
+
         <Button
           variant="outlined"
           onClick={handleNext}
           disabled={index === sections.length - 1}
+          sx={{
+            color: "#4D869C",
+            borderColor: "#4D869C",
+            "&:hover": {
+              backgroundColor: "#4D869C",
+              color: "#EEF7FF",
+            },
+            "&.Mui-focusVisible, &:focus": {
+              backgroundColor: "#4D869C",
+              color: "#EEF7FF",
+            },
+          }}
         >
           Next
         </Button>

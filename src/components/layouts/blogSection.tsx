@@ -6,10 +6,26 @@ export default function Blogs() {
     <Box
       sx={{
         paddingX: "80px",
-        paddingY: "40px", // Adds bottom space
+        paddingY: "40px",
         height: "80vh",
         position: "relative",
-        overflowY: "auto", // Enables vertical scrolling
+        overflowY: "auto",
+        scrollbarWidth: "thin", // For Firefox
+        scrollbarColor: "#4D869C #CDE8E5", // For Firefox
+        "&::-webkit-scrollbar": {
+          width: "8px",
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "#CDE8E5",
+          borderRadius: "10px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#7AB2B2",
+          borderRadius: "10px",
+        },
+        "&::-webkit-scrollbar-thumb:hover": {
+          backgroundColor: "#4D869C",
+        },
       }}
     >
       <Box

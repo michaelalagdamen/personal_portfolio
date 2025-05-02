@@ -72,44 +72,55 @@ export default function SideTabs() {
         overflow: "hidden",
       }}
     >
-      <Tabs
-        orientation={isMobile ? "horizontal" : "vertical"}
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Responsive vertical tabs"
+      <Box
         sx={{
-          borderRight: isMobile ? 0 : 1,
-          borderBottom: isMobile ? 1 : 0,
-          borderColor: "#CDE8E5", // Custom divider color
-          minWidth: isMobile ? "100%" : 200,
-          "& .MuiTab-root": {
-            color: "#7AB2B2", // Default text color
-            fontFamily: "Geist",
-            textTransform: "none",
-            fontWeight: 500,
-            fontSize: "16px",
-            alignItems: "flex-start",
-            transition: "color 0.3s ease",
-            "&:hover": {
-              color: "#4D869C", // Hover color
-              backgroundColor: "#CDE8E5",
-            },
-          },
-          "& .Mui-selected": {
-            color: "#4D869C", // Selected tab color
-            backgroundColor: "#ffffff",
-          },
-          "& .MuiTabs-indicator": {
-            backgroundColor: "#4D869C", // Indicator color
-          },
+          height: "100vh", // 🔁 Ensures full vertical divider and background
+          backgroundColor: "#4D869C",
+          borderRight: isMobile ? 0 : "1px solid #CDE8E5",
+          borderBottom: isMobile ? "1px solid #CDE8E5" : 0,
+          display: "flex",
+          alignItems: "center", // 🔁 Keeps tabs centered vertically within this box
         }}
       >
-        <Tab label="Home" {...a11yProps(0)} />
-        <Tab label="About" {...a11yProps(1)} />
-        <Tab label="Projects" {...a11yProps(2)} />
-        <Tab label="Blog" {...a11yProps(3)} />
-      </Tabs>
+        <Tabs
+          orientation={isMobile ? "horizontal" : "vertical"}
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Responsive vertical tabs"
+          sx={{
+            borderRight: isMobile ? 0 : 1,
+            borderBottom: isMobile ? 1 : 0,
+            borderColor: "#CDE8E5", // Custom divider color
+            minWidth: isMobile ? "100%" : 200,
+            "& .MuiTab-root": {
+              color: "#CDE8E5", // Default text color
+              fontFamily: "Geist",
+              textTransform: "none",
+              fontWeight: 500,
+              fontSize: "16px",
+              alignItems: "flex-start",
+              transition: "color 0.3s ease",
+              "&:hover": {
+                color: "#4D869C", // Hover color
+                backgroundColor: "#CDE8E5",
+              },
+            },
+            "& .Mui-selected": {
+              color: "#4D869C", // Selected tab color
+              backgroundColor: "#EEF7FF",
+            },
+            "& .MuiTabs-indicator": {
+              backgroundColor: "#4D869C", // Indicator color
+            },
+          }}
+        >
+          <Tab label="Home" {...a11yProps(0)} />
+          <Tab label="About" {...a11yProps(1)} />
+          <Tab label="Projects" {...a11yProps(2)} />
+          <Tab label="Blog" {...a11yProps(3)} />
+        </Tabs>
+      </Box>
 
       <TabPanel value={value} index={0}>
         <Home />
