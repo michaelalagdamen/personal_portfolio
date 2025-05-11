@@ -3,6 +3,7 @@ import Home from "./homeSection";
 import About from "./aboutSection";
 import Projects from "./projectsSection";
 import Blogs from "./blogSection";
+import Contacts from "./contactSection";
 
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
@@ -65,21 +66,21 @@ export default function SideTabs() {
     <Box
       sx={{
         width: "100%",
-        height: "100%",
+        height: "100vh",
         display: "flex",
         justifyContent: "center", // ⬅️ Center horizontally
         alignItems: "center", // ⬅️ Optional: also center vertically
         overflow: "hidden",
+        backgroundColor: "#4D869C",
       }}
     >
       <Box
         sx={{
-          height: "100vh", // 🔁 Ensures full vertical divider and background
-          backgroundColor: "#4D869C",
-          borderRight: isMobile ? 0 : "1px solid #CDE8E5",
-          borderBottom: isMobile ? "1px solid #CDE8E5" : 0,
+          height: "100%", // ensures full vertical space
           display: "flex",
-          alignItems: "center", // 🔁 Keeps tabs centered vertically within this box
+          alignItems: "center", // keeps tabs vertically centered
+          borderRight: isMobile ? 0 : "1px solid #CDE8E5", // ⬅️ full-height border
+          borderBottom: isMobile ? "1px solid #CDE8E5" : 0,
         }}
       >
         <Tabs
@@ -91,7 +92,7 @@ export default function SideTabs() {
           sx={{
             borderRight: isMobile ? 0 : 1,
             borderBottom: isMobile ? 1 : 0,
-            borderColor: "#CDE8E5", // Custom divider color
+            borderColor: "#9ACBD0", // Custom divider color
             minWidth: isMobile ? "100%" : 200,
             "& .MuiTab-root": {
               color: "#CDE8E5", // Default text color
@@ -99,7 +100,7 @@ export default function SideTabs() {
               textTransform: "none",
               fontWeight: 500,
               fontSize: "16px",
-              alignItems: "flex-start",
+              alignItems: "flex-center",
               transition: "color 0.3s ease",
               "&:hover": {
                 color: "#4D869C", // Hover color
@@ -119,6 +120,7 @@ export default function SideTabs() {
           <Tab label="About" {...a11yProps(1)} />
           <Tab label="Projects" {...a11yProps(2)} />
           <Tab label="Blog" {...a11yProps(3)} />
+          <Tab label="Contact" {...a11yProps(4)} />
         </Tabs>
       </Box>
 
@@ -133,6 +135,9 @@ export default function SideTabs() {
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Blogs />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <Contacts />
       </TabPanel>
     </Box>
   );

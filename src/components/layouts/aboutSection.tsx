@@ -61,9 +61,9 @@ const sections = [
         >
           A passionate UI Designer with a keen eye for detail and a drive to
           create intuitive, beautiful digital experiences. With a background in
-          [mention your background, e.g., graphic design, front-end development,
-          etc.], I specialize in crafting user interfaces that are not only
-          visually engaging but also user-centered and functional.
+          Web Design, Figma and UI Design, I specialize in crafting user
+          interfaces that are not only visually engaging but also user-centered
+          and functional.
         </Typography>
         <Typography
           sx={{
